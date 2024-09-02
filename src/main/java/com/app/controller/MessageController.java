@@ -27,6 +27,8 @@ public class MessageController {
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
 	
+	
+	// "/msg/conn" >> 접속
 	@MessageMapping("/conn")
 	@SendTo("/topic/bean")
 	public Map<String, String> conn(Map<String, String> paramMap) {
@@ -34,6 +36,7 @@ public class MessageController {
 		return paramMap;
 	}
 	
+	// "/msg/room"
 	@MessageMapping("/room")
 	public void conn1(@Payload PayloadMessageDTO payloadDTO, SimpMessageHeaderAccessor headerAccessor) {
 		log.info("Path : {}", "/room");
@@ -45,6 +48,15 @@ public class MessageController {
 			log.info("Payload : {}", payloadDTO);
 			simpMessagingTemplate.convertAndSend(topic, payloadDTO);
 		}
+	}
+	
+	// "/msg/set"
+	@MessageMapping("/set")
+	// "/topic/get"
+	@SendTo("/topic/get")
+	public String conn2(String msg) {
+		log.info("Message : {}", msg);
+		return "성공";
 	}
 	
 	@EventListener

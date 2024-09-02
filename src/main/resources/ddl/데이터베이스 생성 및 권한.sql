@@ -19,9 +19,11 @@ CREATE TABLE `channel` (
 	topic			VARCHAR(50)		NOT NULL
 );
 
-INSERT INTO `channel` (channelNm,prefixe,topic) VALUES ('CH-A','/topic/bean1','/msg/room');
-INSERT INTO `channel` (channelNm,prefixe,topic) VALUES ('CH-B','/topic/bean2','/msg/room');
-INSERT INTO `channel` (channelNm,prefixe,topic) VALUES ('CH-C','/topic/bean3','/msg/room');
+TRUNCATE TABLE channel;
+
+INSERT INTO `channel` (channelNm,topic,prefixe) VALUES ('CH-A','/topic/bean1','/msg/room');
+INSERT INTO `channel` (channelNm,topic,prefixe) VALUES ('CH-B','/topic/bean2','/msg/room');
+INSERT INTO `channel` (channelNm,topic,prefixe) VALUES ('CH-C','/topic/bean3','/msg/room');
 
 COMMIT;
 
