@@ -50,24 +50,18 @@ public class MessageController {
 		}
 	}
 	
-	// "/msg/set"
-	@MessageMapping("/set")
-	// "/topic/get"
-	@SendTo("/topic/get")
-	public String conn2(String msg) {
-		log.info("Message : {}", msg);
-		return "성공";
+	@MessageMapping("/set")	// "/msg/set"
+	@SendTo("/topic/get")	// "/topic/get"
+	public Map<String, String> conn2(@Payload Map<String, String> paramMap) {
+		log.info("Message : {}", paramMap);
+		return paramMap;
 	}
 	
 	@EventListener
 	public void handleSessionConnectEvent(SessionConnectEvent event) {
 		System.out.println("Session Connect Event");
-		System.out.println(event);
-		// STOMP 헤더 접근기
         StompHeaderAccessor accessor = StompHeaderAccessor.wrap(event.getMessage());
-        // 클라이언트가 연결한 Endpoint를 가져오기
         String sessionId = accessor.getSessionId();
-        // 연결 정보를 출력
         System.out.println("Client connected with sessionId: " + sessionId);
 	}
 	

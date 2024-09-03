@@ -14,7 +14,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		// JS에서 웹소켓 접속 시 해당 URL로 연결
 		registry.addEndpoint("/ws-app")
-			.setAllowedOrigins("http://127.0.0.1:5500", "http://localhost:5500", "http://192.168.0.56:5500")
+			.setAllowedOrigins("http://127.0.0.1:5500", "http://localhost:5500")
 			.withSockJS();
 	}
 
